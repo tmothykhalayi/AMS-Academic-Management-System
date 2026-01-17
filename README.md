@@ -1,74 +1,237 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🎓 Student Portal Backend (NestJS)
+
+A backend application built with NestJS to manage new student registration, fee payment, and academic results.
+This system provides secure APIs for students and administrators to interact with academic and financial records.
+
+## 📌 Features
+
+### 👤 Authentication & Authorization
+- JWT-based authentication
+- Role-based access control (Admin, Student)
+- Secure password hashing
+
+### 📝 New Student Registration
+- Online student application
+- Registration approval workflow (Pending / Approved / Rejected)
+- Auto student ID generation
+
+### 💰 Fee Management & Payments
+- Fee structure per course/semester
+- Invoice generation
+- Online payment integration (Stripe / Paystack / Flutterwave)
+- Payment verification and receipts
+
+### 📊 Results Management
+- Admin uploads student results
+- Semester-wise result viewing
+- GPA/CGPA calculation
+- Downloadable result slips
+
+## 🏗️ Tech Stack
+
+- **Framework**: NestJS (Node.js)
+- **Language**: TypeScript
+- **Database**: PostgreSQL
+- **ORM**: TypeORM
+- **Authentication**: JWT + Passport
+- **Validation**: class-validator
+- **API Docs**: Swagger
+- **Payments**: Stripe / Paystack (via Webhooks)
+- **Package Manager**: pnpm
+
+## 📁 Project Structure
+```
+src/
+├── auth/
+├── users/
+├── registration/
+├── fees/
+├── payments/
+├── results/
+├── common/
+│   ├── guards/
+│   ├── decorators/
+│   └── enums/
+├── database/
+│   └── database.module.ts
+├── app.module.ts
+└── main.ts
 ```
 
-## Compile and run the project
+## 🚀 Getting Started
 
+### 1️⃣ Clone the Repository
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+git clone https://github.com/tmothykhalayi/Survey-backend.git
+cd Survey-backend
 ```
 
-## Run tests
-
+### 2️⃣ Install Dependencies
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+pnpm install
 ```
 
-## Deployment
+### 3️⃣ Environment Variables
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Create a `.env` file in the root directory:
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+```env
+PORT=3000
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=your_db_user
+DB_PASSWORD=your_db_password
+DB_NAME=student_portal
+DB_SYNC=true
+DB_LOGGING=false
+JWT_SECRET=your_jwt_secret
+PAYMENT_SECRET=your_payment_secret
+```
 
+### 4️⃣ Run the Application
+
+**Development mode:**
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+pnpm run start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+**Production mode:**
+```bash
+pnpm run build
+pnpm run start:prod
+```
 
-## Resources
+Server will run on: **http://localhost:3000**
 
-Check out a few resources that may come in handy when working with NestJS:
+## 📝 Available Scripts
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+- `pnpm run start` - Start the application
+- `pnpm run start:dev` - Start in watch mode
+- `pnpm run start:debug` - Start in debug mode
+- `pnpm run build` - Build the application
+- `pnpm run format` - Format code with Prettier
+- `pnpm run lint` - Lint and fix code
+- `pnpm run test` - Run unit tests
+- `pnpm run test:e2e` - Run end-to-end tests
+- `pnpm run test:cov` - Run tests with coverage
 
-## Support
+## � API Endpoints (Sample)
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Authentication
+```
+POST /auth/login
+POST /auth/register
+```
 
-## Stay in touch
+### Registration
+```
+POST   /registrations
+GET    /registrations/status
+PATCH  /registrations/:id/approve
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Fees & Payments
+```
+GET  /fees/outstanding
+POST /payments/initiate
+POST /payments/verify
+```
 
-## License
+### Results
+```
+POST /results
+GET  /results
+GET  /results/semester/:id
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## 🔐 Security
+- JWT authentication
+- Role-based guards
+- Input validation
+- Encrypted passwords
+- Secure payment verification via webhooks
 
+## 📚 API Documentation
 
+Swagger documentation available at: **http://localhost:3000/api**
 
+## 🧪 Testing
+```bash
+pnpm run test
+```
 
+## 🛠️ Future Enhancements
+- Attendance management
+- Parent portal
+- Email/SMS notifications
+- Admin dashboard
+- Audit logs
+
+## 👨‍💻 Author
+tmothykhalayi  
+Backend Developer (NestJS)
+
+## 📄 License
+This project is licensed under the MIT License.
+
+📡 API Endpoints (Sample)
+Authentication
+POST /auth/login
+POST /auth/register
+
+Registration
+POST   /registrations
+GET    /registrations/status
+PATCH  /registrations/:id/approve
+
+Fees & Payments
+GET  /fees/outstanding
+POST /payments/initiate
+POST /payments/verify
+
+Results
+POST /results
+GET  /results
+GET  /results/semester/:id
+
+🔐 Security
+
+JWT authentication
+
+Role-based guards
+
+Input validation
+
+Encrypted passwords
+
+Secure payment verification via webhooks
+
+📘 API Documentation
+
+Swagger documentation available at:
+
+http://localhost:3000/api
+
+🧪 Testing
+npm run test
+
+🛠️ Future Enhancements
+
+Attendance management
+
+Parent portal
+
+Email/SMS notifications
+
+Admin dashboard
+
+Audit logs
+
+👨‍💻 Author
+
+Your Name
+Backend Developer (NestJS)
+
+📄 License
+
+This project is licensed under the MIT License.
