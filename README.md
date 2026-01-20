@@ -1,6 +1,7 @@
 # 🎓 AMS – Academic Management System
+## Greenfield Secondary School
 
-**Academic Management System (AMS)** is a comprehensive web-based platform that streamlines academic and administrative processes in universities and colleges.
+**Academic Management System (AMS)** is a comprehensive web-based platform that streamlines academic and administrative processes for Greenfield Secondary School.
 
 The system enables secure student registration, fee management, online payments, result processing, and role-based access for administrators and students. AMS is built with a modern full-stack architecture, providing a scalable backend API and a responsive frontend interface for efficient academic operations.
 
@@ -94,7 +95,7 @@ DB_HOST=localhost
 DB_PORT=5432
 DB_USERNAME=your_db_user
 DB_PASSWORD=your_db_password
-DB_NAME=student_portal
+DB_NAME=greenfield_ams
 DB_SYNC=true
 DB_LOGGING=false
 JWT_SECRET=your_jwt_secret
@@ -339,7 +340,8 @@ These enhancements make the system:
 
 ## 👨‍💻 Author
 
-Your Name
+**Greenfield Secondary School**  
+Developed by: tmothykhalayi  
 Backend Developer (NestJS)
 
 ## 📄 License
