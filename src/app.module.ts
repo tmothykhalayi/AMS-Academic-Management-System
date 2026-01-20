@@ -1,14 +1,17 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { SurveyModule } from './survey/survey.module';
-import { QuestionModule } from './question/question.module';
-import { ResponseModule } from './response/response.module';
-import { UserModule } from './user/user.module';
 import { DatabaseModule} from './database/database.module'; 
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { RegistrationsModule } from './registrations/registrations.module';
+import { FeesModule } from './fees/fees.module';
+import { PaymentsModule } from './payments/payments.module';
+import { ResultsModule } from './results/results.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
-  imports: [SurveyModule, QuestionModule, ResponseModule, UserModule, DatabaseModule],
+  imports: [ DatabaseModule, AuthModule, UsersModule, RegistrationsModule, FeesModule, PaymentsModule, ResultsModule, AdminModule],
   controllers: [AppController],
   providers: [AppService],
 })
