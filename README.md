@@ -254,10 +254,6 @@ test/
 └── jest-e2e.json         # E2E test configuration
 ```
 
----
-
----
-
 ## 🌟 Additional Features
 
 ### 🔔 Notifications System
@@ -337,10 +333,9 @@ These enhancements make the system:
 
 - Attendance management
 - Parent portal
-- Mobile application
-
-## 📄 License
-This project is licensed under the MIT License.
+- Email/SMS notifications
+- Admin dashboard
+- Audit logs
 
 ## 👨‍💻 Author
 
