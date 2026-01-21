@@ -339,7 +339,6 @@ These enhancements make the system:
 - Audit logs
 
 ## 👨‍💻 Author
-
 **Greenfield Secondary School**  
 Developed by: tmothykhalayi  
 Backend Developer (NestJS)
