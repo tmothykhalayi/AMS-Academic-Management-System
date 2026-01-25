@@ -1,7 +1,6 @@
-export class AuditLog {}
+import { PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, Entity, ManyToOne, JoinColumn } from 'typeorm';
+import { User } from '../../users/entities/user.entity';
 
-
-// src/common/entities/audit-log.entity.ts
 @Entity()
 export class AuditLog {
   @PrimaryGeneratedColumn('uuid')

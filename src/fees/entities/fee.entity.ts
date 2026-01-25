@@ -1,5 +1,8 @@
-export class Fee {}
-// src/fees/entities/fee.entity.ts
+
+import {FeeType  } from "../../Enum";
+import { PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, Entity, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
+import { Admin } from '../../users/entities/user.entity';
+import { InvoiceItem } from '../../invoice/entities/invoice.entity';
 @Entity()
 export class Fee {
   @PrimaryGeneratedColumn('uuid')

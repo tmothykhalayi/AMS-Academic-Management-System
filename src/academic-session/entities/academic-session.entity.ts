@@ -1,6 +1,4 @@
-export class AcademicSession {}
-
-// src/common/entities/academic-session.entity.ts
+import { PrimaryGeneratedColumn ,CreateDateColumn ,UpdateDateColumn,Column ,Entity ,} from 'typeorm';
 @Entity()
 export class AcademicSession {
   @PrimaryGeneratedColumn('uuid')

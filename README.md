@@ -10,8 +10,11 @@ The system enables secure student registration, fee management, online payments,
 - **👤 Student accounts & authentication** - Secure user registration and login system
 - **📝 Student registration & approval workflow** - Streamlined application and verification process
 - **💰 Fee structure, invoices & payments** - Comprehensive financial management
+- **🧾 Invoice generation & tracking** - Automated invoice creation with unique references
 - **💳 Online payment verification** - Integrated payment gateway processing
 - **📊 Academic results & GPA/CGPA** - Automated grade calculation and management
+- **📅 Academic session management** - Multi-session and semester organization
+- **🕒 Audit logging & tracking** - Comprehensive activity monitoring and compliance
 - **🛡️ Role-based access (Admin / Student)** - Granular permission control
 - **📈 Administrative dashboards & reports** - Real-time analytics and insights
 
@@ -39,6 +42,28 @@ The system enables secure student registration, fee management, online payments,
 - GPA/CGPA calculation
 - Downloadable result slips
 
+### 🧾 Invoice Management
+- Automated invoice generation
+- Unique invoice reference numbers
+- Invoice status tracking (Pending/Paid/Overdue)
+- Invoice history and retrieval
+- Fee itemization and breakdowns
+
+### 📅 Academic Session Management
+- Multi-year academic session support
+- Semester and term organization
+- Session-based fee structures
+- Academic year transitions
+- Active session tracking
+
+### 🕒 Audit Log & Compliance
+- Comprehensive activity logging
+- User action tracking with timestamps
+- Payment transaction audit trail
+- Result modification history
+- Registration status change tracking
+- System-wide accountability
+
 ## 🏗️ Tech Stack
 
 - **Framework**: NestJS (Node.js)
@@ -53,21 +78,83 @@ The system enables secure student registration, fee management, online payments,
 
 ## 📁 Project Structure
 ```
-src/
-├── auth/
-├── users/
-├── registration/
-├── fees/
-├── payments/
-├── results/
-├── common/
-│   ├── guards/
-│   ├── decorators/
-│   └── enums/
-├── database/
-│   └── database.module.ts
-├── app.module.ts
-└── main.ts
+Survey-backend/
+├── src/
+│   ├── academic-session/          # Academic session management
+│   │   ├── dto/
+│   │   ├── entities/
+│   │   ├── academic-session.controller.ts
+│   │   ├── academic-session.service.ts
+│   │   └── academic-session.module.ts
+│   ├── audit-log/                 # Audit logging system
+│   │   ├── dto/
+│   │   ├── entities/
+│   │   ├── audit-log.controller.ts
+│   │   ├── audit-log.service.ts
+│   │   └── audit-log.module.ts
+│   ├── auth/                      # Authentication & authorization
+│   │   ├── decorators/
+│   │   ├── dto/
+│   │   ├── guards/
+│   │   ├── strategies/
+│   │   └── auth.module.ts
+│   ├── database/                  # Database configuration
+│   │   └── database.module.ts
+│   ├── fees/                      # Fee structure management
+│   │   ├── dto/
+│   │   ├── entities/
+│   │   ├── fees.controller.ts
+│   │   ├── fees.service.ts
+│   │   └── fees.module.ts
+│   ├── invoice/                   # Invoice generation & management
+│   │   ├── dto/
+│   │   ├── entities/
+│   │   ├── invoice.controller.ts
+│   │   ├── invoice.service.ts
+│   │   └── invoice.module.ts
+│   ├── payments/                  # Payment processing
+│   │   ├── dto/
+│   │   ├── entities/
+│   │   ├── payments.controller.ts
+│   │   ├── payments.service.ts
+│   │   └── payments.module.ts
+│   ├── registrations/             # Student registration system
+│   │   ├── dto/
+│   │   ├── entities/
+│   │   ├── registrations.controller.ts
+│   │   ├── registrations.service.ts
+│   │   └── registrations.module.ts
+│   ├── results/                   # Academic results management
+│   │   ├── dto/
+│   │   ├── entities/
+│   │   ├── results.controller.ts
+│   │   ├── results.service.ts
+│   │   └── results.module.ts
+│   ├── users/                     # User management
+│   │   ├── dto/
+│   │   ├── entities/
+│   │   ├── users.controller.ts
+│   │   ├── users.service.ts
+│   │   └── users.module.ts
+│   ├── app.controller.ts
+│   ├── app.service.ts
+│   ├── app.module.ts
+│   ├── Enum.ts
+│   └── main.ts
+├── test/                          # End-to-end tests
+│   ├── app.e2e-spec.ts
+│   └── jest-e2e.json
+├── docker-compose.yml
+├── docker-compose.prod.yml
+├── Dockerfile
+├── Dockerfile.prod
+├── eslint.config.mjs
+├── nest-cli.json
+├── package.json
+├── pnpm-lock.yaml
+├── tsconfig.json
+├── tsconfig.build.json
+└── README.md
 ```
 
 ---
@@ -178,6 +265,34 @@ POST   /payments/initiate     # Initiate payment
 POST   /payments/verify       # Verify payment
 GET    /payments/:id          # Get payment by ID
 GET    /payments/receipt/:id  # Download receipt
+```
+
+### 🧾 Invoices
+```http
+GET    /invoice               # Get all invoices
+POST   /invoice               # Create invoice (Admin)
+GET    /invoice/:id           # Get invoice by ID
+PATCH  /invoice/:id           # Update invoice (Admin)
+DELETE /invoice/:id           # Delete invoice (Admin)
+GET    /invoice/student/:id   # Get student invoices
+```
+
+### 📅 Academic Sessions
+```http
+GET    /academic-session              # Get all sessions
+POST   /academic-session              # Create session (Admin)
+GET    /academic-session/:id          # Get session by ID
+PATCH  /academic-session/:id          # Update session (Admin)
+DELETE /academic-session/:id          # Delete session (Admin)
+GET    /academic-session/active       # Get active session
+```
+
+### 🕒 Audit Logs
+```http
+GET    /audit-log             # Get all audit logs (Admin)
+GET    /audit-log/:id         # Get audit log by ID
+GET    /audit-log/user/:id    # Get logs by user
+GET    /audit-log/action/:type # Get logs by action type
 ```
 
 ### 📊 Results

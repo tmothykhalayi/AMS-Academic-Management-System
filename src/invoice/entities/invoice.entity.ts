@@ -1,5 +1,17 @@
-export class Invoice {}
-
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne,
+  OneToMany,
+  JoinColumn,
+} from 'typeorm';
+import { Student } from '../../users/entities/user.entity';
+import { Payment } from '../../payments/entities/payment.entity';
+import { Fee } from '../../fees/entities/fee.entity';
+import { InvoiceStatus } from '../../Enum';
 // src/fees/entities/invoice.entity.ts
 @Entity()
 export class Invoice {

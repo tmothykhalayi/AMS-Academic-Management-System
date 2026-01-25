@@ -1,4 +1,8 @@
-export class Payment {}
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { PaymentMethod, PaymentStatus, PaymentGateway } from '../../Enum';
+import { Invoice } from '../../invoice/entities/invoice.entity';
+import { Admin ,Student }  from '../../users/entities/user.entity';
+
 // src/payments/entities/payment.entity.ts
 @Entity()
 export class Payment {

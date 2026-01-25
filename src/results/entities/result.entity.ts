@@ -1,5 +1,8 @@
-export class Result {}
-// src/results/entities/result.entity.ts
+
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Student ,Admin } from '../../users/entities/user.entity';
+import { Grade } from '../../Enum';
+
 @Entity()
 export class Result {
   @PrimaryGeneratedColumn('uuid')

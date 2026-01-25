@@ -1,5 +1,10 @@
-export class User {}
-
+import { Entity, PrimaryGeneratedColumn, Column, TableInheritance, ChildEntity, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { UserRole, StudentStatus, AdminRole } from "../../Enum";
+import { Registration } from "../../registrations/entities/registration.entity";
+import { Invoice } from "../../invoice/entities/invoice.entity";
+import { Payment } from "../../payments/entities/payment.entity";
+import { Result } from "../../results/entities/result.entity";
+import { Fee } from "../../fees/entities/fee.entity";
 // src/users/entities/user.entity.ts
 @Entity()
 @TableInheritance({ column: { type: "varchar", name: "type" } })

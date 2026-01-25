@@ -1,4 +1,7 @@
-export class Registration {}
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Student ,Admin} from '../../users/entities/user.entity';
+import { RegistrationStatus } from '../../Enum';
+
 // src/registration/entities/registration.entity.ts
 @Entity()
 export class Registration {
