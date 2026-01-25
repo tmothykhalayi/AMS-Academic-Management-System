@@ -9,9 +9,11 @@ import { FeesModule } from './fees/fees.module';
 import { PaymentsModule } from './payments/payments.module';
 import { ResultsModule } from './results/results.module';
 import { AdminModule } from './admin/admin.module';
+import { InvoiceModule } from './invoice/invoice.module';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
-  imports: [ DatabaseModule, AuthModule, UsersModule, RegistrationsModule, FeesModule, PaymentsModule, ResultsModule, AdminModule],
+  imports: [ DatabaseModule, AuthModule, UsersModule, RegistrationsModule, FeesModule, PaymentsModule, ResultsModule, AdminModule, InvoiceModule, PaymentModule],
   controllers: [AppController],
   providers: [AppService],
 })
