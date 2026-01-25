@@ -11,9 +11,11 @@ import { ResultsModule } from './results/results.module';
 import { AdminModule } from './admin/admin.module';
 import { InvoiceModule } from './invoice/invoice.module';
 import { PaymentModule } from './payment/payment.module';
+import { AcademicSessionModule } from './academic-session/academic-session.module';
+import { AuditLogModule } from './audit-log/audit-log.module';
 
 @Module({
-  imports: [ DatabaseModule, AuthModule, UsersModule, RegistrationsModule, FeesModule, PaymentsModule, ResultsModule, AdminModule, InvoiceModule, PaymentModule],
+  imports: [ DatabaseModule, AuthModule, UsersModule, RegistrationsModule, FeesModule, PaymentsModule, ResultsModule, AdminModule, InvoiceModule, PaymentModule, AcademicSessionModule, AuditLogModule],
   controllers: [AppController],
   providers: [AppService],
 })
