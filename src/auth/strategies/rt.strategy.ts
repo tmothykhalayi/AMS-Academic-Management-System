@@ -9,7 +9,7 @@ import { User } from '../../users/entities/user.entity';
 import * as bcrypt from 'bcrypt';
 
 interface JwtPayload {
-  sub: number;
+  sub: string;
   email: string;
   [key: string]: any;
 }

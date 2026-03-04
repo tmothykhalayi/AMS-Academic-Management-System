@@ -10,8 +10,6 @@ import { Payment, PaymentStatus, PaymentType } from './entities/payment.entity';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 import { UpdatePaymentDto } from './dto/update-payment.dto';
 import { User } from 'src/users/entities/user.entity';
-import { Appointment } from 'src/appointments/entities/appointment.entity';
-import {  } from '../Index';
 import * as crypto from 'crypto';
 import axios from 'axios';
 
@@ -162,7 +160,7 @@ export class PaymentsService {
         phoneNumber: createPaymentDto.phoneNumber,
         amount: createPaymentDto.amount,
         type: createPaymentDto.type,
-        user: user,
+        student: user,
         // appointment: appointment || undefined, // Use undefined instead of null
         // order: pharmacyOrder || undefined, // Use undefined instead of null
         paystackReference: reference,
@@ -319,8 +317,8 @@ export class PaymentsService {
 
   async getPaymentById(id: string, user: User): Promise<Payment> {
     const payment = await this.paymentRepository.findOne({
-      where: { id, user: { id: user.id } },
-      relations: ['user', 'billing'],
+      where: { id, student: { id: user.id } },
+      relations: ['student', 'billing'],
     });
 
     if (!payment) {
@@ -332,7 +330,7 @@ export class PaymentsService {
 
   async listPayments(user: User): Promise<Payment[]> {
     return await this.paymentRepository.find({
-      where: { user: { id: user.id } },
+      where: { student: { id: user.id } },
       relations: [
         // 'appointment',
         'billing',
@@ -344,7 +342,7 @@ export class PaymentsService {
   // Get all payments (admin only)
   async getAllPayments(): Promise<Payment[]> {
     return await this.paymentRepository.find({
-      relations: ['user', 'billing'],
+      relations: ['student', 'billing'],
       order: { createdAt: 'DESC' },
     });
   }

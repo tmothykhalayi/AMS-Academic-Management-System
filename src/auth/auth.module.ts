@@ -2,7 +2,7 @@ import { Module, Global } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { getDatabaseConfig } from '../config/database.config';
+import {DatabaseModule } from '../database/database.module';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { User } from '../users/entities/user.entity';
@@ -15,11 +15,7 @@ import { MailModule } from '../mail/mail.module';
 @Global()
 @Module({
   imports: [
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: getDatabaseConfig,
-      inject: [ConfigService],
-    }),
+    DatabaseModule,
     TypeOrmModule.forFeature([User]),
     UsersModule,
     MailModule,

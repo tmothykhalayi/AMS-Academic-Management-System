@@ -14,7 +14,7 @@ import { ConfigService } from '@nestjs/config';
 import { LoginAuthDto } from './dto/login.dto';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { User,  } from '../users/entities/user.entity';
-import { UserRole } from '../Index';
+import { UserRole } from '../Enum';
 import { MailService } from '../mail/mail.service';
 import * as speakeasy from 'speakeasy';
 import { UsersService } from '../users/users.service';
@@ -37,7 +37,7 @@ export class AuthService {
     accessToken: string;
     refreshToken: string;
     user: {
-      id: number;
+      id: string;
       email: string;
       firstName: string;
       lastName: string;
@@ -89,7 +89,7 @@ export class AuthService {
     accessToken: string;
     refreshToken: string;
     user: {
-      id: number;
+      id: string;
       email: string;
       firstName: string;
       lastName: string;
@@ -190,7 +190,7 @@ export class AuthService {
     }
   }
   // ===== REFRESH TOKENS =====
-  async refreshTokens(userId: number, refreshToken: string) {
+  async refreshTokens(userId: string, refreshToken: string) {
     try {
       if (!refreshToken) {
         this.logger.error('No refresh token provided');
@@ -251,7 +251,7 @@ export class AuthService {
   }
 
   // ===== SIGN OUT =====
-  async signOut(userId: number) {
+  async signOut(userId: string) {
     try {
       const user = await this.userRepository.findOne({ where: { id: userId } });
 
@@ -275,7 +275,7 @@ export class AuthService {
 
   // ===== GET TOKENS =====
   private async getTokens(
-    userId: number,
+    userId: string,
     email: string,
     role: string,
   ): Promise<{
@@ -304,7 +304,7 @@ export class AuthService {
   }
 
   // ===== UPDATE REFRESH TOKEN =====
-  private async updateRefreshToken(userId: number, refreshToken: string) {
+  private async updateRefreshToken(userId: string, refreshToken: string) {
     const hashedRefreshToken = await bcrypt.hash(refreshToken, 10);
     this.logger.log(`Updating hashed refresh token for user ID: ${userId}`);
 

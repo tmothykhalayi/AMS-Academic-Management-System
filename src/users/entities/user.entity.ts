@@ -39,6 +39,18 @@ export abstract class User {
   @Column({ nullable: true })
   refreshToken: string;
 
+  @Column({ nullable: true })
+  hashedRefreshToken: string;
+
+  @Column({ nullable: true })
+  otp: string;
+
+  @Column({ nullable: true })
+  secret: string;
+
+  @Column({ type: 'timestamp', nullable: true })
+  otpExpiry: Date;
+
   @CreateDateColumn()
   createdAt: Date;
 

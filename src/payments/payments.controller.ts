@@ -44,7 +44,7 @@ export class PaymentsController {
   // Create a new payment
 
   @Post('initialize')
-  @Roles(Role.PATIENT)
+  @Roles(Role.STUDENT)
   @ApiOperation({ summary: 'Initialize a new payment' })
   @ApiResponse({ status: 201, description: 'Payment initialized successfully' })
   async initializePayment(
@@ -63,7 +63,7 @@ export class PaymentsController {
   }
 
   @Patch(':id/status')
-  @Roles(Role.ADMIN, Role.THERAPIST, Role.RECEPTIONIST)
+  @Roles(Role.ADMIN)
   @ApiOperation({ summary: 'Update payment status' })
   @ApiResponse({
     status: 200,
@@ -78,7 +78,7 @@ export class PaymentsController {
   }
 
   @Get()
-   @Roles(Role.PATIENT, Role.ADMIN)
+   @Roles(Role.STUDENT, Role.ADMIN)
   @ApiOperation({ summary: 'Get all payments for user' })
   @ApiResponse({ status: 200, description: 'Payments retrieved successfully' })
   async listPayments(@UserDecorator() user: User) {
@@ -86,8 +86,8 @@ export class PaymentsController {
   }
 
   @Get('admin/all')
-   @Roles(Role.ADMIN, Role.THERAPIST)
-  @ApiOperation({ summary: 'Get all payments (Admin and Pharmacist)' })
+   @Roles(Role.ADMIN)
+  @ApiOperation({ summary: 'Get all payments (Admin)' })
   @ApiResponse({
     status: 200,
     description: 'All payments retrieved successfully',
@@ -97,7 +97,7 @@ export class PaymentsController {
   }
 
   @Get('pharmacy/:pharmacyId')
-   @Roles(Role.THERAPIST, Role.ADMIN)
+   @Roles(Role.ADMIN)
   @ApiOperation({ summary: 'Get payments for a specific pharmacy' })
   @ApiResponse({
     status: 200,
@@ -106,7 +106,7 @@ export class PaymentsController {
 
 
   @Get(':id')
-   @Roles(Role.PATIENT, Role.ADMIN)
+   @Roles(Role.STUDENT, Role.ADMIN)
   @ApiOperation({ summary: 'Get payment by ID' })
   @ApiResponse({ status: 200, description: 'Payment retrieved successfully' })
   async getPaymentById(@Param('id') id: string, @UserDecorator() user: User) {
@@ -122,7 +122,7 @@ export class PaymentsController {
   }
 
   @Patch(':id/cancel')
-   @Roles(Role.PATIENT, Role.ADMIN)
+   @Roles(Role.STUDENT, Role.ADMIN)
   @ApiOperation({ summary: 'Cancel a pending payment' })
   @ApiResponse({ status: 200, description: 'Payment cancelled successfully' })
   async cancelPayment(@Param('id') id: string, @UserDecorator() user: User) {
@@ -130,7 +130,7 @@ export class PaymentsController {
   }
 
   @Patch(':id')
-   @Roles(Role.PATIENT, Role.ADMIN)
+   @Roles(Role.STUDENT, Role.ADMIN)
   @ApiOperation({ summary: 'Update payment details' })
   @ApiResponse({ status: 200, description: 'Payment updated successfully' })
   async updatePayment(
@@ -142,7 +142,7 @@ export class PaymentsController {
   }
 
   @Delete(':id')
-  @Roles(Role.PATIENT, Role.ADMIN)
+  @Roles(Role.STUDENT, Role.ADMIN)
   @ApiOperation({ summary: 'Delete a payment record' })
   @ApiResponse({ status: 204, description: 'Payment deleted successfully' })
   async deletePayment(@Param('id') id: string, @UserDecorator() user: User) {

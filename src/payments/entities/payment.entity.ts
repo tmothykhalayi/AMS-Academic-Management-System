@@ -8,9 +8,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
-import { Billing } from '../../billing/entities/billing.entity';
-
-//import { Appointment } from 'src/appointments/entities/appointment.entity';
+import { Fee } from '../../fees/entities/fee.entity';
+import { Invoice } from '../../invoice/entities/invoice.entity';
 
 export enum PaymentStatus {
   PENDING = 'pending',
@@ -65,20 +64,18 @@ export class Payment {
   paystackAuthorizationUrl: string;
 
   @Column({ nullable: true })
-  userId: number;
+  userId: string;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'userId' })
-  user: User;
+  student: User;
 
-  // @ManyToOne(() => Appointment, { nullable: true })
-  // appointment?: Appointment;
+  @ManyToOne(() => Invoice, (invoice) => invoice.payments, { nullable: true })
+  @JoinColumn({ name: 'invoiceId' })
+  invoice?: Invoice;
 
-  @ManyToOne(() => Billing, (billing) => billing.payments, {
-    nullable: true,
-    onDelete: 'CASCADE',
-  })
-  billing?: Billing;
+  @Column({ nullable: true })
+  invoiceId?: string;
 
   @Column({ type: 'text', nullable: true })
   notes: string;

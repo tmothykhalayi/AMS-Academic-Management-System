@@ -27,28 +27,28 @@ export class UsersController {
 
   @Get(':id')
   @ApiOperation({ summary: 'Get user by ID', description: 'Retrieves a specific user by their ID' })
-  @ApiParam({ name: 'id', description: 'User ID', type: 'number' })
+  @ApiParam({ name: 'id', description: 'User ID', type: 'string' })
   @ApiResponse({ status: 200, description: 'User found' })
   @ApiResponse({ status: 404, description: 'User not found' })
   findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+    return this.usersService.findOne(id);
   }
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update user', description: 'Updates user information' })
-  @ApiParam({ name: 'id', description: 'User ID', type: 'number' })
+  @ApiParam({ name: 'id', description: 'User ID', type: 'string' })
   @ApiResponse({ status: 200, description: 'User updated successfully' })
   @ApiResponse({ status: 404, description: 'User not found' })
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+    return this.usersService.update(id, updateUserDto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete user', description: 'Deletes a user from the system' })
-  @ApiParam({ name: 'id', description: 'User ID', type: 'number' })
+  @ApiParam({ name: 'id', description: 'User ID', type: 'string' })
   @ApiResponse({ status: 200, description: 'User deleted successfully' })
   @ApiResponse({ status: 404, description: 'User not found' })
   remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+    return this.usersService.remove(id);
   }
 }
