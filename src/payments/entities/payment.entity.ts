@@ -1,65 +1,87 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { PaymentMethod, PaymentStatus, PaymentGateway } from '../../Enum';
-import { Invoice } from '../../invoice/entities/invoice.entity';
-import { Admin ,Student }  from '../../users/entities/user.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { User } from '../../users/entities/user.entity';
+import { Billing } from '../../billing/entities/billing.entity';
 
-// src/payments/entities/payment.entity.ts
+//import { Appointment } from 'src/appointments/entities/appointment.entity';
+
+export enum PaymentStatus {
+  PENDING = 'pending',
+  SUCCESS = 'success',
+  FAILED = 'failed',
+  CANCELLED = 'cancelled',
+  REFUNDED = 'refunded',
+}
+
+export enum PaymentType {
+  //APPOINTMENT = 'appointment',
+  ORDER = 'order',
+}
+
 @Entity()
 export class Payment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ unique: true })
-  reference: string; // Payment gateway reference
+  @Column()
+  fullName: string;
 
-  @Column({ unique: true })
-  transactionId: string;
+  @Column()
+  email: string;
 
-  @Column('decimal', { precision: 10, scale: 2 })
+  @Column()
+  phoneNumber: string;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
   amount: number;
 
-  @Column({ type: 'enum', enum: PaymentMethod })
-  method: PaymentMethod; // CARD, BANK_TRANSFER, CASH, MOBILE_MONEY
-
-  @Column({ type: 'enum', enum: PaymentStatus, default: PaymentStatus.PENDING })
+  @Column({
+    type: 'enum',
+    enum: PaymentStatus,
+    default: PaymentStatus.PENDING,
+  })
   status: PaymentStatus;
 
-  @Column({ type: 'enum', enum: PaymentGateway, nullable: true })
-  gateway: PaymentGateway; // STRIPE, PAYSTACK, FLUTTERWAVE
+  @Column({
+    type: 'enum',
+    enum: PaymentType,
+  })
+  type: PaymentType;
 
-  @Column({ type: 'jsonb', nullable: true })
-  gatewayResponse: Record<string, any>;
-
-  @Column({ nullable: true })
-  paidAt: Date;
-
-  @Column({ nullable: true })
-  verifiedAt: Date;
+  @Column({ unique: true })
+  paystackReference: string;
 
   @Column({ nullable: true })
-  receiptUrl: string;
-
-  // Relationships
-  @ManyToOne(() => Student, (student) => student.payments)
-  @JoinColumn({ name: 'studentId' })
-  student: Student;
-
-  @Column()
-  studentId: string;
-
-  @ManyToOne(() => Invoice, (invoice) => invoice.payments)
-  @JoinColumn({ name: 'invoiceId' })
-  invoice: Invoice;
-
-  @Column()
-  invoiceId: string;
-
-  @ManyToOne(() => Admin, { nullable: true })
-  @JoinColumn({ name: 'verifiedById' })
-  verifiedBy: Admin;
+  paystackAccessCode: string;
 
   @Column({ nullable: true })
-  verifiedById: string;
+  paystackAuthorizationUrl: string;
+
+  @Column({ nullable: true })
+  userId: number;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'userId' })
+  user: User;
+
+  // @ManyToOne(() => Appointment, { nullable: true })
+  // appointment?: Appointment;
+
+  @ManyToOne(() => Billing, (billing) => billing.payments, {
+    nullable: true,
+    onDelete: 'CASCADE',
+  })
+  billing?: Billing;
+
+  @Column({ type: 'text', nullable: true })
+  notes: string;
 
   @CreateDateColumn()
   createdAt: Date;

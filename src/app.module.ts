@@ -8,14 +8,15 @@ import { RegistrationsModule } from './registrations/registrations.module';
 import { FeesModule } from './fees/fees.module';
 import { PaymentsModule } from './payments/payments.module';
 import { ResultsModule } from './results/results.module';
-import { AdminModule } from './admin/admin.module';
 import { InvoiceModule } from './invoice/invoice.module';
-import { PaymentModule } from './payment/payment.module';
 import { AcademicSessionModule } from './academic-session/academic-session.module';
 import { AuditLogModule } from './audit-log/audit-log.module';
 
 @Module({
-  imports: [ DatabaseModule, AuthModule, UsersModule, RegistrationsModule, FeesModule, PaymentsModule, ResultsModule, AdminModule, InvoiceModule, PaymentModule, AcademicSessionModule, AuditLogModule],
+  imports: [ DatabaseModule, AuthModule, UsersModule,
+     RegistrationsModule, FeesModule, PaymentsModule, 
+     ResultsModule,  InvoiceModule,
+      AcademicSessionModule, AuditLogModule],
   controllers: [AppController],
   providers: [AppService],
 })
