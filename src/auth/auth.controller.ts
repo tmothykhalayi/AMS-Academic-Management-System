@@ -129,7 +129,7 @@ export class AuthController {
     },
   })
   async signOut(@GetCurrentUserId() userId: number) {
-    await this.authService.signOut(userId);
+    await this.authService.signOut(userId.toString());
     return { message: 'Successfully signed out' };
   }
 
