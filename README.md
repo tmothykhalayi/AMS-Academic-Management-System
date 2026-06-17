@@ -6,7 +6,6 @@
 The system enables secure student registration, fee management, online payments, result processing, and role-based access for administrators and students. AMS is built with a modern full-stack architecture, providing a scalable backend API and a responsive frontend interface for efficient academic operations.
 
 ## 🎯 What AMS Manages
-
 - **👤 Student accounts & authentication** - Secure user registration and login system
 - **📝 Student registration & approval workflow** - Streamlined application and verification process
 - **💰 Fee structure, invoices & payments** - Comprehensive financial management
