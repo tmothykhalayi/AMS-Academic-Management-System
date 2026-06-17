@@ -23,7 +23,6 @@ The system enables secure student registration, fee management, online payments,
 - JWT-based authentication
 - Role-based access control (Admin, Student)
 - Secure password hashing
-
 ### 📝 New Student Registration
 - Online student application
 - Registration approval workflow (Pending / Approved / Rejected)
