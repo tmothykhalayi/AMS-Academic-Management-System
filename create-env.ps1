@@ -3,6 +3,7 @@ Write-Host "🔧 Creating Missing .env File" -ForegroundColor Green
 Write-Host "=============================" -ForegroundColor Green
 Write-Host ""
 
+
 # Create .env file
 $envPath = Join-Path $PSScriptRoot ".env"
 $envContent = @"
@@ -72,6 +73,7 @@ Write-Host "🔗 QUICK TEST (if you want to test immediately):" -ForegroundColor
 Write-Host "   - Email: timoth@gmail.com, Password: 123" -ForegroundColor Gray
 Write-Host "   - Email: esthy.nandwa@example.com, Password: 123" -ForegroundColor Gray
 Write-Host ""
+
 Write-Host "❓ TROUBLESHOOTING:" -ForegroundColor Cyan
 Write-Host "- If you get database connection errors, check PostgreSQL is running" -ForegroundColor Gray
 Write-Host "- If you get 500 errors, check your .env file is properly configured" -ForegroundColor Gray

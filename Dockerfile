@@ -7,6 +7,8 @@ RUN npm install -g pnpm
 # Set working directory
 WORKDIR /app
 
+
+
 # Create applogs directory for logging
 RUN mkdir -p /app/applogs
 
