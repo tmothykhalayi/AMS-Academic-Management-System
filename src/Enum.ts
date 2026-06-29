@@ -1,4 +1,3 @@
-// src/common/enums/user.enum.ts
 export enum UserRole {
   STUDENT = 'student',
   ADMIN = 'admin',
@@ -69,7 +68,6 @@ export enum PaymentGateway {
 
 // src/common/enums/result.enum.ts
 export enum Grade {
-  A_PLUS = 'A+',
   A = 'A',
   A_MINUS = 'A-',
   B_PLUS = 'B+',
