@@ -69,13 +69,8 @@ export enum PaymentGateway {
 // src/common/enums/result.enum.ts
 export enum Grade {
   A = 'A',
-  A_MINUS = 'A-',
-  B_PLUS = 'B+',
   B = 'B',
-  B_MINUS = 'B-',
-  C_PLUS = 'C+',
   C = 'C',
-  C_MINUS = 'C-',
   D = 'D',
-  F = 'F',
+  F = 'F'
 }
